@@ -1,0 +1,1245 @@
+{
+    "message": "Your request was completed successfully",
+    "data": {
+        "key_info": {
+            "percentage_change": 4.43144735581475,
+            "percentage_change_context": "from prev_year",
+            "total_sales_value": 2400090.11,
+            "total_cars": 171719,
+            "transactions_count": 206623
+        },
+        "detail_data": {
+            "locations": {
+                "DCN": {
+                    "monthly": {
+                        "Apr-26": {
+                            "total_cars": 12650,
+                            "total_sales_value": 157072.5,
+                            "transactions_count": 14906,
+                            "transaction_breakdown": {
+                                "House Account Washes": {
+                                    "total_cars": 5,
+                                    "total_sales_value": 395.0,
+                                    "transactions_count": 5
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 3375,
+                                    "total_sales_value": 51642.0,
+                                    "transactions_count": 3375
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 8834,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 8834
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 167,
+                                    "total_sales_value": 3874.0,
+                                    "transactions_count": 203
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 25.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -9.0,
+                                    "transactions_count": 2
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 176,
+                                    "total_sales_value": 101.0,
+                                    "transactions_count": 176
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 143.0,
+                                    "transactions_count": 6
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 74.0,
+                                    "transactions_count": 3
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 93,
+                                    "total_sales_value": 101167.0,
+                                    "transactions_count": 2261
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -369.0,
+                                    "transactions_count": 27
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 25.0,
+                                    "transactions_count": 10
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 4.5,
+                                    "transactions_count": 2
+                                }
+                            }
+                        },
+                        "Feb-26": {
+                            "total_cars": 10195,
+                            "total_sales_value": 146722.53,
+                            "transactions_count": 12171,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 3266,
+                                    "total_sales_value": 52432.0,
+                                    "transactions_count": 3266
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 6420,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 6420
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 144,
+                                    "total_sales_value": 3332.01,
+                                    "transactions_count": 172
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 65.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -50.26,
+                                    "transactions_count": 3
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 266,
+                                    "total_sales_value": 157.0,
+                                    "transactions_count": 266
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 62.0,
+                                    "transactions_count": 3
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 123.34,
+                                    "transactions_count": 5
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 99,
+                                    "total_sales_value": 90341.01,
+                                    "transactions_count": 2009
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -141.0,
+                                    "transactions_count": 6
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 390.0,
+                                    "transactions_count": 15
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 11.43,
+                                    "transactions_count": 4
+                                }
+                            }
+                        },
+                        "Jan-26": {
+                            "total_cars": 8977,
+                            "total_sales_value": 136768.29,
+                            "transactions_count": 10969,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2908,
+                                    "total_sales_value": 45110.0,
+                                    "transactions_count": 2908
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 5683,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 5683
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 66,
+                                    "total_sales_value": 1955.0,
+                                    "transactions_count": 78
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 40.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -58.0,
+                                    "transactions_count": 2
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 250,
+                                    "total_sales_value": 65.0,
+                                    "transactions_count": 250
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 104.0,
+                                    "transactions_count": 4
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 37.74,
+                                    "transactions_count": 3
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 70,
+                                    "total_sales_value": 90254.0,
+                                    "transactions_count": 2007
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -1108.0,
+                                    "transactions_count": 16
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 365.0,
+                                    "transactions_count": 12
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 3.55,
+                                    "transactions_count": 3
+                                }
+                            }
+                        },
+                        "Jun-26": {
+                            "total_cars": 735,
+                            "total_sales_value": 13895.0,
+                            "transactions_count": 977,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 201,
+                                    "total_sales_value": 2797.0,
+                                    "transactions_count": 201
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 513,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 513
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 6,
+                                    "total_sales_value": 139.0,
+                                    "transactions_count": 6
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 5,
+                                    "total_sales_value": 20.0,
+                                    "transactions_count": 5
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 10,
+                                    "total_sales_value": 10909.0,
+                                    "transactions_count": 251
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 30.0,
+                                    "transactions_count": 1
+                                }
+                            }
+                        },
+                        "Mar-26": {
+                            "total_cars": 14490,
+                            "total_sales_value": 176773.11,
+                            "transactions_count": 16617,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 4793,
+                                    "total_sales_value": 76702.0,
+                                    "transactions_count": 4793
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 9038,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 9038
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 263,
+                                    "total_sales_value": 5874.0,
+                                    "transactions_count": 298
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 255.0,
+                                    "transactions_count": 5
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -75.0,
+                                    "transactions_count": 5
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 300,
+                                    "total_sales_value": 105.0,
+                                    "transactions_count": 300
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 49.0,
+                                    "transactions_count": 10
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 94.09,
+                                    "transactions_count": 5
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 96,
+                                    "total_sales_value": 94327.02,
+                                    "transactions_count": 2117
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -808.0,
+                                    "transactions_count": 18
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 250.0,
+                                    "transactions_count": 23
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 5
+                                }
+                            }
+                        },
+                        "May-26": {
+                            "total_cars": 11139,
+                            "total_sales_value": 151504.84,
+                            "transactions_count": 13408,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                },
+                                "House Account Washes": {
+                                    "total_cars": 6,
+                                    "total_sales_value": 208.0,
+                                    "transactions_count": 6
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2978,
+                                    "total_sales_value": 45557.0,
+                                    "transactions_count": 2978
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 7787,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 7787
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 111,
+                                    "total_sales_value": 2721.0,
+                                    "transactions_count": 130
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 60.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -20.0,
+                                    "transactions_count": 1
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 147,
+                                    "total_sales_value": 89.0,
+                                    "transactions_count": 147
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 199.0,
+                                    "transactions_count": 6
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 106.33,
+                                    "transactions_count": 7
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 110,
+                                    "total_sales_value": 102954.01,
+                                    "transactions_count": 2309
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -535.0,
+                                    "transactions_count": 14
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 160.0,
+                                    "transactions_count": 17
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 5.5,
+                                    "transactions_count": 3
+                                }
+                            }
+                        }
+                    },
+                    "location_cars_total": 58186,
+                    "location_revenue_total": 782736.27,
+                    "transactions_count": 69048
+                },
+                "FWD": {
+                    "monthly": {
+                        "Apr-26": {
+                            "total_cars": 9198,
+                            "total_sales_value": 126624.79,
+                            "transactions_count": 11102,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 500.0,
+                                    "transactions_count": 4
+                                },
+                                "House Account Washes": {
+                                    "total_cars": 12,
+                                    "total_sales_value": 481.0,
+                                    "transactions_count": 12
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 1918,
+                                    "total_sales_value": 27675.0,
+                                    "transactions_count": 1918
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 6849,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 6849
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 87,
+                                    "total_sales_value": 2085.0,
+                                    "transactions_count": 107
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 10.0,
+                                    "transactions_count": 1
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -45.0,
+                                    "transactions_count": 4
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 270,
+                                    "total_sales_value": 506.0,
+                                    "transactions_count": 270
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 438.0,
+                                    "transactions_count": 27
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 6.78,
+                                    "transactions_count": 2
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 62,
+                                    "total_sales_value": 94302.01,
+                                    "transactions_count": 1887
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -342.0,
+                                    "transactions_count": 11
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 1008.0,
+                                    "transactions_count": 9
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                }
+                            }
+                        },
+                        "Feb-26": {
+                            "total_cars": 7968,
+                            "total_sales_value": 120546.05,
+                            "transactions_count": 9726,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 2064,
+                                    "total_sales_value": 30600.0,
+                                    "transactions_count": 2064
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 5439,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 5439
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 78,
+                                    "total_sales_value": 1802.01,
+                                    "transactions_count": 92
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 60.0,
+                                    "transactions_count": 3
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -53.5,
+                                    "transactions_count": 3
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 334,
+                                    "total_sales_value": 415.0,
+                                    "transactions_count": 334
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 448.0,
+                                    "transactions_count": 24
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 34.29,
+                                    "transactions_count": 2
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 52,
+                                    "total_sales_value": 86909.0,
+                                    "transactions_count": 1737
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -129.0,
+                                    "transactions_count": 5
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 429.0,
+                                    "transactions_count": 17
+                                },
+                                "Upgrade": {
+                                    "total_cars": 1,
+                                    "total_sales_value": 31.25,
+                                    "transactions_count": 6
+                                }
+                            }
+                        },
+                        "Jan-26": {
+                            "total_cars": 7293,
+                            "total_sales_value": 119835.02,
+                            "transactions_count": 9083,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 1965,
+                                    "total_sales_value": 28380.0,
+                                    "transactions_count": 1965
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 4897,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 4897
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 45,
+                                    "total_sales_value": 1367.01,
+                                    "transactions_count": 56
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 125.0,
+                                    "transactions_count": 4
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -116.0,
+                                    "transactions_count": 6
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 338,
+                                    "total_sales_value": 432.0,
+                                    "transactions_count": 340
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 517.0,
+                                    "transactions_count": 29
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 48,
+                                    "total_sales_value": 87693.01,
+                                    "transactions_count": 1749
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -150.0,
+                                    "transactions_count": 8
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 1587.0,
+                                    "transactions_count": 25
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 4
+                                }
+                            }
+                        },
+                        "Jun-26": {
+                            "total_cars": 553,
+                            "total_sales_value": 11537.0,
+                            "transactions_count": 755,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 111,
+                                    "total_sales_value": 1588.0,
+                                    "transactions_count": 111
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 420,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 420
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 4,
+                                    "total_sales_value": 89.0,
+                                    "transactions_count": 4
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 14,
+                                    "total_sales_value": 82.0,
+                                    "transactions_count": 14
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 25.0,
+                                    "transactions_count": 1
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 4,
+                                    "total_sales_value": 9653.0,
+                                    "transactions_count": 201
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -50.0,
+                                    "transactions_count": 1
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 150.0,
+                                    "transactions_count": 3
+                                }
+                            }
+                        },
+                        "Mar-26": {
+                            "total_cars": 11266,
+                            "total_sales_value": 141422.29,
+                            "transactions_count": 13107,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 3046,
+                                    "total_sales_value": 45514.0,
+                                    "transactions_count": 3046
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 7562,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 7562
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 161,
+                                    "total_sales_value": 3731.01,
+                                    "transactions_count": 186
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 285.0,
+                                    "transactions_count": 5
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -183.0,
+                                    "transactions_count": 7
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 438,
+                                    "total_sales_value": 357.0,
+                                    "transactions_count": 438
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 346.0,
+                                    "transactions_count": 14
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 40.54,
+                                    "transactions_count": 3
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 59,
+                                    "total_sales_value": 90410.0,
+                                    "transactions_count": 1799
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -823.0,
+                                    "transactions_count": 15
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 1742.0,
+                                    "transactions_count": 29
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 2.74,
+                                    "transactions_count": 2
+                                }
+                            }
+                        },
+                        "May-26": {
+                            "total_cars": 8203,
+                            "total_sales_value": 123783.25,
+                            "transactions_count": 10202,
+                            "transaction_breakdown": {
+                                "House Account Washes": {
+                                    "total_cars": 7,
+                                    "total_sales_value": 644.0,
+                                    "transactions_count": 7
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 1881,
+                                    "total_sales_value": 27779.0,
+                                    "transactions_count": 1881
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 5925,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 5925
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 84,
+                                    "total_sales_value": 2025.0,
+                                    "transactions_count": 102
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 105.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -75.0,
+                                    "transactions_count": 3
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 255,
+                                    "total_sales_value": 566.0,
+                                    "transactions_count": 256
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 332.0,
+                                    "transactions_count": 97
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 101.46,
+                                    "transactions_count": 4
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 51,
+                                    "total_sales_value": 93555.01,
+                                    "transactions_count": 1883
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -1819.0,
+                                    "transactions_count": 12
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 562.16,
+                                    "transactions_count": 26
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 7.62,
+                                    "transactions_count": 4
+                                }
+                            }
+                        }
+                    },
+                    "location_cars_total": 44481,
+                    "location_revenue_total": 643748.4,
+                    "transactions_count": 53975
+                },
+                "LGC": {
+                    "monthly": {
+                        "Apr-26": {
+                            "total_cars": 13691,
+                            "total_sales_value": 186825.94,
+                            "transactions_count": 16616,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 150.0,
+                                    "transactions_count": 1
+                                },
+                                "House Account Washes": {
+                                    "total_cars": 8,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 8
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2747,
+                                    "total_sales_value": 42432.0,
+                                    "transactions_count": 2747
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 10413,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 10413
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 122,
+                                    "total_sales_value": 2815.0,
+                                    "transactions_count": 147
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 5.0,
+                                    "transactions_count": 1
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -45.0,
+                                    "transactions_count": 3
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 329,
+                                    "total_sales_value": 466.0,
+                                    "transactions_count": 329
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 703.0,
+                                    "transactions_count": 27
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 14.5,
+                                    "transactions_count": 3
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 72,
+                                    "total_sales_value": 140986.01,
+                                    "transactions_count": 2897
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -723.0,
+                                    "transactions_count": 20
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 12.0,
+                                    "transactions_count": 15
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 10.43,
+                                    "transactions_count": 5
+                                }
+                            }
+                        },
+                        "Feb-26": {
+                            "total_cars": 12231,
+                            "total_sales_value": 182981.77,
+                            "transactions_count": 14979,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 150.0,
+                                    "transactions_count": 2
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2907,
+                                    "total_sales_value": 45938.0,
+                                    "transactions_count": 2907
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 8684,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 8684
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 120,
+                                    "total_sales_value": 2841.0,
+                                    "transactions_count": 145
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 70.0,
+                                    "transactions_count": 3
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -85.0,
+                                    "transactions_count": 3
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 449,
+                                    "total_sales_value": 552.0,
+                                    "transactions_count": 449
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 483.0,
+                                    "transactions_count": 33
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 41.77,
+                                    "transactions_count": 2
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 71,
+                                    "total_sales_value": 133559.0,
+                                    "transactions_count": 2711
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -605.0,
+                                    "transactions_count": 18
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 37.0,
+                                    "transactions_count": 15
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 7
+                                }
+                            }
+                        },
+                        "Jan-26": {
+                            "total_cars": 11303,
+                            "total_sales_value": 181897.23,
+                            "transactions_count": 14041,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2938,
+                                    "total_sales_value": 45428.0,
+                                    "transactions_count": 2938
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 7777,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 7777
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 79,
+                                    "total_sales_value": 2437.01,
+                                    "transactions_count": 99
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 80.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -160.0,
+                                    "transactions_count": 4
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 452,
+                                    "total_sales_value": 639.0,
+                                    "transactions_count": 453
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 790.0,
+                                    "transactions_count": 45
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 138.22,
+                                    "transactions_count": 4
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 57,
+                                    "total_sales_value": 132588.0,
+                                    "transactions_count": 2689
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -165.0,
+                                    "transactions_count": 6
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 122.0,
+                                    "transactions_count": 23
+                                }
+                            }
+                        },
+                        "Jun-26": {
+                            "total_cars": 940,
+                            "total_sales_value": 16957.26,
+                            "transactions_count": 1224,
+                            "transaction_breakdown": {
+                                "Individual Wash": {
+                                    "total_cars": 173,
+                                    "total_sales_value": 2552.0,
+                                    "transactions_count": 173
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 731,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 731
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 11,
+                                    "total_sales_value": 236.0,
+                                    "transactions_count": 12
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -3.0,
+                                    "transactions_count": 1
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 19,
+                                    "total_sales_value": 45.0,
+                                    "transactions_count": 19
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 12.0,
+                                    "transactions_count": 2
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 22.26,
+                                    "transactions_count": 1
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 6,
+                                    "total_sales_value": 14105.0,
+                                    "transactions_count": 281
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -12.0,
+                                    "transactions_count": 1
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 3
+                                }
+                            }
+                        },
+                        "Mar-26": {
+                            "total_cars": 17750,
+                            "total_sales_value": 214392.99,
+                            "transactions_count": 20653,
+                            "transaction_breakdown": {
+                                "Gift Card Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 2
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 4415,
+                                    "total_sales_value": 69088.0,
+                                    "transactions_count": 4415
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 12361,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 12361
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 196,
+                                    "total_sales_value": 4438.01,
+                                    "transactions_count": 229
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 120.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -277.0,
+                                    "transactions_count": 7
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 688,
+                                    "total_sales_value": 1539.0,
+                                    "transactions_count": 688
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 1566.0,
+                                    "transactions_count": 87
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 45.37,
+                                    "transactions_count": 4
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 90,
+                                    "total_sales_value": 138006.03,
+                                    "transactions_count": 2810
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -195.0,
+                                    "transactions_count": 10
+                                },
+                                "Unknown": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 36.29,
+                                    "transactions_count": 29
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 26.29,
+                                    "transactions_count": 9
+                                }
+                            }
+                        },
+                        "May-26": {
+                            "total_cars": 13137,
+                            "total_sales_value": 190550.25,
+                            "transactions_count": 16087,
+                            "transaction_breakdown": {
+                                "House Account Washes": {
+                                    "total_cars": 8,
+                                    "total_sales_value": 6.0,
+                                    "transactions_count": 8
+                                },
+                                "Individual Wash": {
+                                    "total_cars": 2793,
+                                    "total_sales_value": 43129.0,
+                                    "transactions_count": 2793
+                                },
+                                "Membership Redemption": {
+                                    "total_cars": 9783,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 9783
+                                },
+                                "New Membership Sale": {
+                                    "total_cars": 117,
+                                    "total_sales_value": 2713.0,
+                                    "transactions_count": 137
+                                },
+                                "Paid In Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 45.0,
+                                    "transactions_count": 2
+                                },
+                                "Paid Out Transaction": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -55.0,
+                                    "transactions_count": 4
+                                },
+                                "Prepaid Book Redemption": {
+                                    "total_cars": 356,
+                                    "total_sales_value": 991.0,
+                                    "transactions_count": 356
+                                },
+                                "Prepaid Book Sale": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 1020.0,
+                                    "transactions_count": 46
+                                },
+                                "Prorate": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 89.07,
+                                    "transactions_count": 3
+                                },
+                                "Recurring Membership Payment": {
+                                    "total_cars": 79,
+                                    "total_sales_value": 142886.05,
+                                    "transactions_count": 2929
+                                },
+                                "Refund": {
+                                    "total_cars": 0,
+                                    "total_sales_value": -313.87,
+                                    "transactions_count": 8
+                                },
+                                "Unknown": {
+                                    "total_cars": 1,
+                                    "total_sales_value": 40.0,
+                                    "transactions_count": 17
+                                },
+                                "Upgrade": {
+                                    "total_cars": 0,
+                                    "total_sales_value": 0.0,
+                                    "transactions_count": 1
+                                }
+                            }
+                        }
+                    },
+                    "location_cars_total": 69052,
+                    "location_revenue_total": 973605.44,
+                    "transactions_count": 83600
+                }
+            }
+        }
+    },
+    "success": true,
+    "error": null
+}
