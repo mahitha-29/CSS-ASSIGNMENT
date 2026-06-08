@@ -1,0 +1,572 @@
+mahitha-29: Could you please perform a detailed analysis of the changes between the main branch and this branch and explain them in a clear, structured manner?
+
+I would like you to:
+
+* Analyze all file changes and understand the purpose of each modification
+* Explain the overall architecture before and after the changes
+* Describe what problem this implementation is trying to solve
+* Explain why the approach was changed and why those changes were required
+* Walk through each modified file and explain:
+
+  * What changed
+  * Why it changed
+  * How it fits into the overall architecture
+  * Any dependencies on other files
+* Explain how the changes flow through the application end-to-end
+
+Please assume the reader is seeing this codebase and feature for the first time. The explanation should be simple, structured, and easy to follow.
+
+Additionally:
+
+* Point out any redundant code, unnecessary complexity, or potential mistakes
+* Highlight any optimization opportunities
+* Mention any areas where the implementation could be simplified or made more maintainable
+* Call out any risks, edge cases, or future considerations
+
+Instead of providing a file-by-file diff summary only, please create a step-by-step architectural walkthrough that explains how the entire solution works, how the files interact with each other, and how the implementation evolved from the main branch to the current branch.
+
+
+GitHub Copilot: Ran terminal command: git log --oneline main..HEAD | head -30
+
+Ran terminal command: git diff main..HEAD --name-status
+
+Ran terminal command: git diff main..HEAD -- src/services/membershipServices.ts
+
+Ran terminal command: git diff main..HEAD -- src/types/membershipTypes.ts src/types/types.ts
+
+Ran terminal command: git diff main..HEAD -- src/mapper/genericMapper.ts
+
+Ran terminal command: git diff main..HEAD -- src/hooks/useCommonKpiData.ts src/hooks/useCommonKPIDrillDownView.ts
+
+Ran terminal command: git diff main..HEAD -- src/routes/KpiModulesRoutes/index.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/CommonDrillDownView/index.tsx src/components/organisms/KPICardWrapper/index.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/UnifiedMembershipKPICard/UnifiedMembershipKPIConfig.tsx src/components/organisms/UnifiedMembershipKPICard/UnifiedMembershipConfig.test.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/GrowthRateByMemberKPICard/index.tsx src/components/organisms/ChurnRateByMembersKPICard/index.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/GrowthandChurnRateByMemberDrillDown/index.tsx src/components/organisms/GrowthandChurnRateByMemberDrillDown/getTableProps.tsx src/components/organisms/GrowthandChurnRateByMemberDrillDown/getPlotProps.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/GrowthRateByAccountsDrillDownView/getTableProps.ts src/components/organisms/GrowthRateByAccountsDrillDownView/growthRateByAccountsDrillDownConfig.tsx src/components/organisms/MembershipActivityDrillDownView/getTableProps.ts src/components/organisms/MembershipActivityDrillDownView/membershipActivityDrillDownConfig.tsx
+
+Ran terminal command: git diff main..HEAD -- src/mocks/data/membershipResponseData/unifiedMembership.ts src/mocks/errorHandlers.ts src/mocks/noDatahandlers.ts
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/GrowthAndChurnRateKPICard/GrowthChurnRateKPICard.test.tsx src/components/organisms/GrowthRateByMemberKPICard/GrowthRateByMemberKPICard.test.tsx src/components/organisms/ChurnRateByMembersKPICard/ChurnRateByMembersKPICard.test.tsx src/components/organisms/MembershipActvityKPICard/MembershipActivityKPICard.test.tsx src/components/organisms/VoluntaryInvoluntaryKPICard/VoluntaryInvoluntaryKPICard.test.tsx
+
+Ran terminal command: git diff main..HEAD -- src/components/organisms/MembershipActivityDrillDownView/MembershipActivityUseDrillDownView.test.tsx
+
+Ran terminal command: git show main:src/utils/Membership/unfiedMembershipServiceMapping.ts 2>/dev/null || echo "File not found on main"
+
+Ran terminal command: git show main:src/services/membershipServices.ts | head -60
+
+Ran terminal command: cat src/utils/Membership/getmembershipServiceMapping.ts | head -40 && echo "---" && cat src/utils/constants.ts | grep -E "START_TIME|END_TIME|MEMBERSHIP_ACTIVITY" | head -20
+
+Ran terminal command: grep -n "MEMBERSHIP_ACTIVITY_KPIS\|mappedMultipleInfoKpiInfoValuesType\|ToCamelCase" src/mapper/genericMapper.ts | head -20
+
+Ran terminal command: sed -n '320,330p' src/mapper/genericMapper.ts
+
+Ran terminal command: cat src/types/genericTypes.ts | grep -A 15 "NewKpiMultipleInfoDataType"
+
+Ran terminal command: cat src/types/genericTypes.ts | grep -A 8 "CalloutType\|MultipleKpiInfoType\|BreakDownType"
+
+Now I have all the context needed. Let me compile the full analysis. 
+
+Ran terminal command: grep -n "configKpi\|kpiIdToLazyComponent" src/components/organisms/KPICardWrapper/index.tsx | head -20
+
+Ran terminal command: sed -n '82,130p' src/components/organisms/KPICardWrapper/index.tsx
+
+Ran terminal command: grep -rn "membershipcommonconfig\|service.*serviceFunction\|unfiedMembership" src/ --include="*.ts" --include="*.tsx" | grep -v ".test." | head -20
+
+Continue to iterate?
+[object Object]
+
+mahitha-29: @agent Continue: "Continue to iterate?"
+
+GitHub Copilot: Ran terminal command: grep -rn "isFeatureFlagEnabled\|useVariableValue.*membership" src/ --include="*.ts" --include="*.tsx" | grep -v ".test." | head -20
+
+Now I have a complete picture. Here is the full architectural analysis.
+
+---
+
+# Branch Analysis: `feat/WD-4200_unify-membership`
+
+## 1. What Problem Is Being Solved?
+
+The WashMetrix dashboard has a **Membership module** with 9 KPI tiles:
+
+| Group | KPI Tiles |
+|---|---|
+| **Activity** | Active Members, Active Accounts, Membership Value |
+| **Account Rates** | Monthly Growth Rate, Monthly Churn Rate, Net Accounts Growth, Voluntary vs. Involuntary |
+| **Member Rates** | Growth Rate By Member, Churn Rate By Member |
+
+All 9 of these tiles call the **same backend endpoint** — `POST /membership/unified-membership` — which returns a single large JSON containing data for all of them at once.
+
+The problem this branch solves is: **the old code did not fully commit to this unified approach.** The unified API call existed behind a feature flag (`membership-unification-enabled` from DevCycle), meaning there were two parallel code paths — a legacy path and a unified path — with complex conditional logic threading through every layer of the application. This branch completes the migration and removes the entire feature flag scaffolding.
+
+---
+
+## 2. Architecture Before (main branch)
+
+### The Feature Flag Layer
+
+The `main` branch had three separate places checking a feature flag:
+
+```
+KPICardWrapper              → useVariableValue('membership-unification-enabled')
+MembershipDrillDownWrapper  → useVariableValue('membership-unification-enabled')
+GrowthRateByMemberKPICard   → useVariableValue('membership-unification-enabled')
+ChurnRateByMembersKPICard   → useVariableValue('membership-unification-enabled')
+GrowthAndChurnRateDrillDownView → useVariableValue('membership-unification-enabled')
+```
+
+### The Dual Service Resolution Chain
+
+When a card loaded, the flow was:
+
+```
+KPICardWrapper
+  └─ if membership KPI and flag ON → pass isFeatureFlagEnabled=true to CommonKPICard
+       └─ CommonKPICard → getMembershipKPIData(isFeatureFlagEnabled=true)
+            └─ resolveMembershipMapping(kpi, isFeatureFlagEnabled)
+                 ├─ flag OFF  → membershipServiceMapping[kpi]     (legacy endpoints)
+                 └─ flag ON and 9 known KPIs → unifiedMembershipServiceMapping[kpi]
+```
+
+`unifiedMembershipServiceMapping` (a now-deleted file) held 9 entries, all pointing to the same URL but with **different mapper functions per KPI type**. Each mapper function extracted only its portion of the response:
+
+- `GROWTH_RATE_BY_MEMBER` → `mapGrowthRateByMembersFromUnified()` → returns `GrowthRateByMembersDataType`
+- `CHURN_RATE_BY_MEMBER` → `mapChurnRateByMembersFromUnified()` → returns `ChurnRateByMembersDataType`
+- `MONTHLY_GROWTH_RATE`, `ACTIVE_MEMBERS`, etc. → `mappedNewMembershipUnified...()` → returns `NewKpiMultipleInfoDataType<...>`
+
+This meant the 9 KPI tiles consumed **three different data types** despite all coming from the same API response.
+
+### Data Type Fragmentation
+
+```
+GrowthRateByMembersDataType:               ChurnRateByMembersDataType:
+  info.identifier                            info.identifier
+  data.callouts.primaryCallouts              data.callouts.primaryCallouts
+    .monthlyGrowthRate                         .monthlyChurnRate
+  data.prevComparison       ← flat value    data.prevComparison       ← flat value
+  data.prevComparisonContext                 data.prevComparisonContext
+  data.dataFrequency                         data.dataFrequency
+  data.groupedData[]                         data.groupedData[]
+
+NewKpiMultipleInfoDataType<GrowthChurnByAccountDataType>:
+  info[KpiType]                  ← keyed by KPI type
+  data.primaryCallout            ← different naming convention
+  data.secondaryCallout
+  data.detailData.breakdown[]
+```
+
+### Query Key Fragmentation
+
+Each of the 9 KPI tiles had its own React Query cache key (e.g., `KpiType.MONTHLY_GROWTH_RATE`, `KpiType.NET_ACCOUNTS_GROWTH`, `KpiType.ACTIVE_MEMBERS`), so they would each make a separate network request even though the backend endpoint and response are the same.
+
+---
+
+## 3. Architecture After (this branch)
+
+### The Feature Flag is Gone
+
+All `useVariableValue('membership-unification-enabled', false)` calls are removed. The unified path is the only path.
+
+### One Service, Two Variants
+
+The service layer is redesigned around a single internal function and a factory:
+
+```
+fetchUnifiedMembership(args)            ← core: calls POST /membership/unified-membership
+                                          sends kpi_identifier in request body
+
+createUnifiedMembershipService(kpiId)   ← factory: wraps fetchUnifiedMembership
+                                          maps response via mapFullUnifiedMembershipResponse
+
+getUnifiedMembershipKPIData             ← pre-built for 8 KPIs (identifier=MONTHLY_GROWTH_RATE)
+getUnifiedMembershipVVIKPIData          ← pre-built for VVI   (identifier=VOLUNTARY_V_INVOLUNTARY)
+```
+
+The `kpi_identifier` in the request body tells the backend what to compute. VVI gets its own service because the backend returns different/additional computed fields for that type.
+
+### One Shared Data Type
+
+All 9 KPI tiles now share one type:
+
+```typescript
+type UnifiedMembershipKpiData = NewKpiMultipleInfoDataType<UnifiedMembershipCallouts>
+
+// Which expands to:
+{
+  info: Partial<Record<KpiType, CommonKpiInfoType<UnifiedMembershipCallouts>>>;  // keyed map
+  data: {
+    primaryCallout:   Partial<UnifiedMembershipCallouts>;   // all possible callout fields
+    secondaryCallout: Partial<UnifiedMembershipCallouts>;
+    detailData: {
+      breakdown: BreakDownType<UnifiedMembershipCallouts>[];  // fat rows, one per period
+    };
+  };
+}
+
+type UnifiedMembershipCallouts = {
+  // Activity
+  activeAccounts?; activeMembers?; membershipValue?;
+  // Account rates
+  growthRateAccounts?; churnRateAccounts?; netGrowthRateAccounts?;
+  voluntaryChurnAccountsPercentage?; involuntaryChurnAccountsPercentage?;
+  // Member rates
+  monthlyGrowthRate?; monthlyChurnRate?;
+  ...
+}
+```
+
+Each card reads only the field(s) it needs from this shared structure.
+
+### Shared Query Keys = Shared Cache
+
+| Before | After |
+|---|---|
+| Each KPI had its own React Query key | 8 KPIs share `'unified-membership'` |
+| → 9 separate network requests | VVI uses `'unified-membership-vvi'` |
+| → 9 separate cache entries | → 2 network requests serve all 9 tiles |
+
+### One Generic Mapper
+
+The two mapper functions (`mapGrowthRateByMembersFromUnified`, `mapChurnRateByMembersFromUnified`) are deleted and replaced with a single `mapFullUnifiedMembershipResponse`. The new mapper:
+
+1. Converts all `prev_comparison` object keys from `snake_case → camelCase` generically
+2. Converts all callout fields from `snake_case → camelCase` generically
+3. Calls `mapFullUnifiedMembershipBreakdown` for the time-series breakdown data
+
+### Fat Breakdown Rows
+
+`buildMembersGroupedData` (old) → `mapFullUnifiedMembershipBreakdown` (new).
+
+The old function produced rows with `total*` prefixed fields useful only for the Growth/Churn Rate By Member drill down. The new function produces "fat rows" containing **every field needed by all KPI types simultaneously** — activity fields, rate fields, and member fields coexist in the same row object. Each drill down view reads only its subset of fields.
+
+---
+
+## 4. File-by-File Walkthrough
+
+### `src/utils/Membership/unfiedMembershipServiceMapping.ts` — **DELETED**
+
+This was the routing table that mapped each of the 9 KPI types to their individual mapper function. It is deleted because the new architecture has one mapper (`mapFullUnifiedMembershipResponse`) that replaces all 9 of these mapper functions. The routing by KPI type is no longer necessary.
+
+---
+
+### membershipServices.ts
+
+**What changed:** The `resolveMembershipMapping` function and `isFeatureFlagEnabled` parameter are removed. Two new exported service functions are added: `getUnifiedMembershipKPIData` and `getUnifiedMembershipVVIKPIData`, built via the `createUnifiedMembershipService` factory. The raw `getMembershipKPIData` (for legacy KPIs) is simplified — it now goes directly to `membershipServiceMapping[kpiIdentifier]` with no conditional branching.
+
+**Why:** Removing the feature flag simplifies the call chain from 3 conditional hops to a direct call. The factory pattern (`createUnifiedMembershipService`) makes it trivial to create future KPI-specific services while sharing the fetch and mapping logic.
+
+**How it fits:** This is the lowest-level data access layer. All membership KPI components depend on this file via the exported service functions.
+
+---
+
+### genericMapper.ts
+
+**What changed:**
+- Deletes `mapGrowthRateByMembersFromUnified` and `mapChurnRateByMembersFromUnified`
+- Adds `mapFullUnifiedMembershipResponse` and `mapFullUnifiedMembershipBreakdown`
+- Adds two helper functions: `mapAccountsBreakdownEntry` and `mapMemberLocationBreakdownEntry`
+- The `MEMBERSHIP_ACTIVITY_KPIS` set (for `ACTIVE_MEMBERS`, `ACTIVE_ACCOUNTS`, `MEMBERSHIP_VALUE`) is already present and continues to be used inside `mappedNewMembershipUnifiedMutipleInfoResponseTypeToNewMembershipUnifiedMutipleInfoDataType`
+
+**Why:** The old mappers were KPI-type-aware, extracting only one slice of the response. The new mapper processes the full response once, then all cards read their slice from the shared result. This avoids reprocessing the same API response multiple times.
+
+**Key design choice in `mapFullUnifiedMembershipBreakdown`:** The function is now **recursively aware** — breakdown entries themselves can have nested `breakdown` objects (e.g., Period → Location Group → Location). `mapAccountsBreakdownEntry` handles this by recursively mapping child entries.
+
+**Dependency:** `mapFullUnifiedMembershipResponse` is called by `createUnifiedMembershipService` in `membershipServices.ts`.
+
+---
+
+### membershipTypes.ts
+
+**What changed:**
+- `GrowthChurnByAccountDataType`: field `activeAccounts` renamed to `activeAccountsStart`, and a companion `activeAccountsEnd` field already existed — now both are explicit
+- Added `UnifiedMembershipCallouts` type — the single flat definition of all callout fields for all 9 membership KPIs
+- Added `UnifiedMembershipKpiData` as an alias for `NewKpiMultipleInfoDataType<UnifiedMembershipCallouts>`
+
+**Why:** Having one type for all 9 KPIs eliminates the type fragmentation. Components can be refactored to accept `UnifiedMembershipKpiData` and TypeScript will ensure they access fields that actually exist.
+
+**Note:** The rename from `activeAccounts` to `activeAccountsStart` is semantically correct — this field represents accounts at the **start** of a period, not the current total.
+
+---
+
+### types.ts
+
+**What changed:** A minor blank line added inside `KPIConfigType`. No functional change.
+
+---
+
+### index.tsx
+
+**What changed:** The entire block checking `if (kpiId === KpiType.GROWTH_RATE_BY_MEMBER || ...)` with 9 conditions is replaced by a single line:
+```tsx
+Card = <CommonKPICard KpiId={kpiId} />;
+```
+
+**Why:** Since the feature flag is removed, there's no longer a reason to differentiate how these 9 KPIs are rendered. They all flow through `CommonKPICard` like every other config-driven KPI.
+
+**Dependency:** Relies on `unifiedMembershipConfig` (in `UnifiedMembershipKPIConfig.tsx`) being properly registered, which is what provides the service function to `CommonKPICard`.
+
+---
+
+### UnifiedMembershipKPIConfig.tsx
+
+**What changed:** Each of the 7 KPI entries in `unifiedMembershipConfig` now has two new fields:
+```tsx
+queryKey: UNIFIED_MEMBERSHIP_QUERY_KEY,
+service: { serviceFunction: getUnifiedMembershipKPIData },
+```
+VVI gets `UNIFIED_MEMBERSHIP_VVI_QUERY_KEY` and `getUnifiedMembershipVVIKPIData`.
+
+**Why:** Previously these configs relied on `getMembershipKPIData` (the generic membership service) being called via the feature-flag-aware path. Now each config explicitly declares its own service function and query key, making the configuration self-contained.
+
+**Dependency:** `CommonKPICard` reads the `service.serviceFunction` from these configs and calls it directly.
+
+---
+
+### index.tsx and `ChurnRateByMembersKPICard/index.tsx`
+
+These two files are mirror changes of each other. **What changed:**
+- Replace `GrowthRateByMembersDataType` / `ChurnRateByMembersDataType` with `UnifiedMembershipKpiData`
+- Remove `useVariableValue` feature flag hook
+- Change service from `getMembershipKPIData` to `getUnifiedMembershipKPIData`
+- Add `queryKey: UNIFIED_MEMBERSHIP_QUERY_KEY` to `useCommonKPIData`
+- Accessor paths updated:
+  - `data.callouts.primaryCallouts.monthlyGrowthRate` → `data.primaryCallout.monthlyGrowthRate`
+  - `data.prevComparison` (flat) → `data.info[KpiType.GROWTH_RATE_BY_MEMBER].prevComparison` (keyed by KPI)
+  - `data.prevComparisonContext` → `data.info[KpiType.GROWTH_RATE_BY_MEMBER].prevComparisonContext`
+  - `data.groupedData` → `data.detailData.breakdown`
+  - `data.info.identifier` → `data.info[KpiType.GROWTH_RATE_BY_MEMBER].identifier`
+- `kpiDataStatus` empty-state check is fixed: old code checked `groupedData.length === 0` which would throw if data was undefined; new code checks `derivedStatus === 'success' && (!breakdown || breakdown.length === 0)`
+
+**Why:** These cards previously used their own bespoke data type. They now consume the same `UnifiedMembershipKpiData` that all other 7 membership tiles use.
+
+---
+
+### index.tsx
+
+**What changed:**
+- Component now accepts an optional `kpiId` prop (`GROWTH_RATE_BY_MEMBER` | `CHURN_RATE_BY_MEMBER`)
+- `id` and `drillDownQueryKey` are now driven by the prop
+- Feature flag removed
+- Service changed to `getUnifiedMembershipKPIData`
+
+**Why:** Previously this drill-down component was hardcoded to `GROWTH_RATE_BY_MEMBER` and was reused for both growth and churn KPIs (both routes pointed to the same component). Now the component correctly knows *which* KPI it's rendering, which matters for reading the right `info[kpiId]` fields.
+
+**Dependency:** The routes in `KpiModulesRoutes/index.tsx` now pass the explicit `kpiId` prop.
+
+---
+
+### getTableProps.tsx and `getPlotProps.tsx`
+
+**What changed:**
+- Accept `UnifiedMembershipKpiData` instead of the old specific type
+- `getTableProps` gains a `kpiId` parameter to look up `info[kpiId].description`
+- `getPlotProps` reads `info[KpiType.GROWTH_RATE_BY_MEMBER].dataFrequency` instead of `data.dataFrequency`
+- Both read from `data.detailData.breakdown` instead of `data.groupedData`
+
+---
+
+### GrowthRateByAccountsDrillDownView
+
+**Two changes:**
+
+1. **`getTableProps.ts`:** `col2` column key renamed from `'activeAccounts'` to `'activeAccountsStart'` to match the field rename in `GrowthChurnByAccountDataType`.
+
+2. **`growthRateByAccountsDrillDownConfig.tsx`:** This is the most significant structural change in the drill-down layer. Previously, `MONTHLY_GROWTH_RATE` was the only entry. Now `MONTHLY_CHURN_RATE` and `NET_ACCOUNTS_GROWTH` each have their **own config entries** with their own `drillDownId` and `drillDownQueryKey`. Also, each now explicitly declares:
+   ```ts
+   service: { serviceFunction: getUnifiedMembershipKPIData }
+   ```
+   VVI gets `getUnifiedMembershipVVIKPIData`.
+
+**Why this matters:** In the old routes file, `NET_ACCOUNTS_GROWTH` and `MONTHLY_CHURN_RATE` both mapped to the same `MembershipDrillDownWrapper` with `kpiId=MONTHLY_GROWTH_RATE`. This meant those drill-down views used the Growth Rate config even when viewing Churn Rate or Net Accounts Growth. Now each has its own dedicated config.
+
+---
+
+### MembershipActivityDrillDownView
+
+**Two changes:**
+
+1. **`membershipActivityDrillDownConfig.tsx`:** `ACTIVE_ACCOUNTS` and `MEMBERSHIP_VALUE` now have their own full drill-down config entries (previously only `ACTIVE_MEMBERS` existed). The old import of `service` from `membershipcommonconfig` is replaced with direct imports of `getUnifiedMembershipKPIData` and `UNIFIED_MEMBERSHIP_QUERY_KEY`.
+
+2. **`getTableProps.ts`:** The row expansion key path changed from `['breakdown', 'breakdown']` to `['breakdown']`. The duplicate `'breakdown'` was a bug — the data shape already has a `breakdown` array at the top level; looking for it at `breakdown.breakdown` was incorrect.
+
+---
+
+### index.tsx
+
+**What changed:** The component is split into two:
+- `CommonDrillDownView` — outer shell, looks up `kpiDrillDownConfig[KpiId]` and returns `null` if not found
+- `CommonDrillDownViewInner` — inner component that receives the resolved config and does the actual rendering
+
+**Why:** Before, if a KPI ID had no config entry (which could happen during the migration), the component would crash trying to destructure `undefined`. The early-return guard `if (!configuration) return null` is now explicit and safe.
+
+---
+
+### index.tsx
+
+**What changed:**
+- `MembershipDrillDownWrapper` component (which existed solely to inject the feature flag) is deleted
+- All 7 KPI routes that previously used `MembershipDrillDownWrapper` now use `CommonDrillDownView` directly
+- **Critical fix:** Previously, `NET_ACCOUNTS_GROWTH`, `MONTHLY_CHURN_RATE`, and `VOLUNTARY_V_INVOLUNTARY` drill downs all pointed to `kpiId=MONTHLY_GROWTH_RATE`. Now each points to its own correct `KpiId`
+- `GrowthAndChurnRateDrillDownView` now receives explicit `kpiId` props for both routes
+
+---
+
+### useCommonKpiData.ts and `useCommonKPIDrillDownView.ts`
+
+**What changed:** Query key array construction fix:
+```ts
+// Before
+datePicker,             // could be null/undefined — React Query treats these inconsistently
+...(customQueryKeys ?? '')  // spreading a string spreads each character!
+
+// After
+datePicker ?? '',       // always a string
+...(customQueryKeys ?? [])  // always an array
+```
+
+**Why:** Spreading `null` over a string like `'abc'` would produce `['a', 'b', 'c']` in the query key — a subtle bug that could cause cache collisions.
+
+---
+
+### unifiedMembership.ts
+
+**What changed:** Four new time periods (`Nov-25`, `Dec-25`, `Nov-22`, `Feb-25`) added to the mock `breakdown` object. `Feb-25` specifically includes a **3-level deep nested breakdown** (Period → Location Group → Location → Package Type) to validate the new recursive mapping logic.
+
+**Why:** The new `mapFullUnifiedMembershipBreakdown` function supports recursive nesting. Tests need data that exercises this new code path. The addition of Nov-25 and Dec-25 also shifts which periods appear first in the table, requiring test updates.
+
+---
+
+### errorHandlers.ts and `noDatahandlers.ts`
+
+**What changed:** The two separate handlers for `membership/growth-rate-by-members` and `membership/churn-rate-by-members` are merged into a single handler for `membership/unified-membership`.
+
+**Why:** These legacy endpoints no longer exist in the new architecture. All membership data comes from the single unified endpoint.
+
+---
+
+### Test Files (5 files updated)
+
+All test updates are **data-driven** changes — the expected display values changed because:
+1. The mock data was updated (new breakdown entries, different periods now appear first)
+2. The callout data is now read from a unified structure with different values than before
+
+For example, `Active Members` now shows `9.46K` (reading `activeMembers` from the unified callout), whereas before it showed `530M` (reading a different field path from the old fragmented response).
+
+---
+
+## 5. End-to-End Data Flow
+
+```
+User opens Membership Dashboard
+        │
+        ▼
+KPICardWrapper(kpiId="active_members")
+  └─ configKpi.has(kpiId) → true
+  └─ Card = <CommonKPICard KpiId="active_members" />
+        │
+        ▼
+CommonKPICard reads unifiedMembershipConfig["active_members"]
+  ├─ service:    { serviceFunction: getUnifiedMembershipKPIData }
+  ├─ queryKey:   "unified-membership"
+  └─ calloutsFunction: getActiveAccountsCallouts(data, 'activeMembers')
+        │
+        ▼
+useCommonKPIData()
+  ├─ React Query key: ["unified-membership", locations, startDate, endDate, ...]
+  ├─ React Query sees key already cached? → return cached data
+  └─ Otherwise: call getUnifiedMembershipKPIData(args)
+        │
+        ▼
+getUnifiedMembershipKPIData
+  = createUnifiedMembershipService(KpiType.MONTHLY_GROWTH_RATE)
+        │
+        ▼
+fetchUnifiedMembership({ kpi_identifier: "monthly_growth_rate", locations, ... })
+  └─ POST /membership/unified-membership
+  └─ response.data contains ALL callouts (activeMembers, churnRate, growthRate, ...)
+        │
+        ▼
+mapFullUnifiedMembershipResponse(rawData)
+  ├─ info: { active_members: {...}, monthly_growth_rate: {...}, churn_rate: {...}, ... }
+  ├─ data.primaryCallout: { activeMembers: 9460, growthRateAccounts: 2.33, ... }
+  ├─ data.secondaryCallout: { ... }
+  └─ data.detailData.breakdown: [ { name:"Nov-25", activeMembers:332, growthRate:0, ... },
+                                   { name:"Dec-25", ... },
+                                   { name:"Jan-26", ... } ]
+        │
+        ▼
+CommonKPICard.calloutsFunction(data, 'activeMembers')
+  └─ reads: data.data.primaryCallout.activeMembers → "9.46K"
+  └─ renders the tile
+
+User clicks "Active Members" tile → drill down
+        │
+        ▼
+KpiModulesRoutes: [KpiType.ACTIVE_MEMBERS] → <CommonDrillDownView KpiId="active_members"/>
+        │
+        ▼
+CommonDrillDownView → looks up activeMembersDrillDownConfig
+  ├─ service:          { serviceFunction: getUnifiedMembershipKPIData }
+  ├─ drillDownQueryKey: "unified-membership"
+  └─ table.tableFn:    getMembershipActivityTableProps
+        │
+        ▼
+useCommonKPIDrillDownView()
+  └─ React Query key: ["unified-membership", ...] → cache HIT (same data!)
+  └─ data.data.detailData.breakdown → passed to table renderer
+        │
+        ▼
+getMembershipActivityTableProps(data)
+  └─ maps breakdown rows: { activeMembers, activeAccounts, membershipValue, ... }
+  └─ renders the drill-down table with expandable rows per period/location
+```
+
+---
+
+## 6. Issues, Risks, and Optimization Opportunities
+
+### 🔴 Potential Bug: `kpi_identifier` Mismatch
+
+`getUnifiedMembershipKPIData` is created with `KpiType.MONTHLY_GROWTH_RATE` as the `kpi_identifier`, but it is used for 8 different KPI types including `ACTIVE_MEMBERS`, `ACTIVE_ACCOUNTS`, `GROWTH_RATE_BY_MEMBER`, etc. If the backend uses `kpi_identifier` to decide which computed fields to include in the response, sending `monthly_growth_rate` when fetching data for `active_members` could return incomplete data silently. This works today only because the backend appears to return all fields regardless. This is an **undocumented assumption** that should be verified or documented.
+
+### 🟡 Redundant Code: `GrowthChurnByAccountDataType.activeAccountsStart` vs. `activeAccounts`
+
+`mapAccountsBreakdownEntry` maps `entry.active_accounts` to both `activeAccountsStart` **and** (via `activeAccountsEnd`) the `activeAccounts` alias field. The `UnifiedMembershipCallouts` type has `activeAccounts` pointing to the *end* value (`active_accounts_end`), while `GrowthChurnByAccountDataType` has `activeAccountsStart`. This duality can be confusing — a future reader might not realize these are different concepts mapped from different source fields.
+
+### 🟡 Type Cast in Drill-Down Components
+
+Multiple places in the drill-down views cast `data.data.detailData.breakdown` with `as ChurnAndGrowthCommonGroupedDataType[] | undefined`. Since `UnifiedMembershipKpiData` stores the breakdown as a generic `BreakDownType<UnifiedMembershipCallouts>[]`, this cast is technically unsafe. If the data shape changes, TypeScript won't warn you. The breakdown type could be made more specific.
+
+### 🟡 Incomplete Feature Flag Cleanup
+
+`CommonKPICard` and `CommonDrillDownView` still have `isFeatureFlagEnabled?: boolean` in their props interfaces and pass it through internally (used for other non-membership flags). The `KPICardWrapper` and membership-specific components no longer pass this for membership KPIs, which is correct. But if anyone reads these files without context, the prop looks like it might still be used for membership. A comment or future cleanup pass would help.
+
+### 🟡 `MembershipActivityUseDrillDownView.test.tsx` Implicit Reliance on Mock Data Ordering
+
+Tests assert on `Nov-25` appearing as the first row. This relies on the order of keys in `unifiedMembership.ts` being stable. The breakdown object is a plain JS object with string keys — JavaScript objects with string keys preserve insertion order in modern engines, but this is a fragile assumption for test data.
+
+### 🟢 Optimization: Shared Cache Is the Right Call
+
+Having 8 KPI tiles share one React Query cache key (`'unified-membership'`) means one network request serves all 8 tiles when they share the same location/date parameters. This is excellent — it was presumably the original goal of the unified endpoint, and this branch delivers it.
+
+### 🟢 Recursive Breakdown Support Is a Good Investment
+
+The new `mapAccountsBreakdownEntry` function handles multi-level nesting (Period → Group → Location → Package) recursively. The mock data even includes a 3-level deep example (`Feb-25 → DEF-Alpine Wash → Better Wash → Premium/Standard Wash`). This is well-designed and will support future drill-down depth requirements.
+
+### 🟢 The `buildMembersGroupedData → mapFullUnifiedMembershipBreakdown` Rename
+
+The old function name was generic and unclear about what it did. The new name is explicit. The "fat row" design (all KPI fields in one row object) is a clean trade-off: slightly more memory per row, but it eliminates the need for separate data fetches per drill-down type.
+
+### 🔵 Future Consideration: `getMembershipKPIData` Remains
+
+The old `getMembershipKPIData` function still exists and is still used by the legacy membership KPIs (non-unified ones like `NEW_MEMBERSHIP_SALES`, `COHORT`, etc.) via `membershipServiceMapping`. As the migration continues, this function could eventually be removed entirely once all membership KPIs move to the unified endpoint.
+
+### 🔵 Future Consideration: `GrowthAndChurnRateDrillDownView` Is a Hidden Duplicate
+
+Despite the addition of a `kpiId` prop, this component still internally reads data via `GROWTH_RATE_BY_MEMBER`-centric field names like `totalGrowthPercentageMembers` and `totalChurnPercentageMembers`. When `kpiId = CHURN_RATE_BY_MEMBER`, the plot still calls `getGrowthRateByPlotData` (which reads the growth field) but renders the churn trend line from the same data — this works because both fields coexist in the fat row object, but it's not immediately obvious and could be confusing to maintain.
